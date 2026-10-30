@@ -1,10 +1,18 @@
 from collections import Counter
 
-queries = ["чехол", "iphone", "чехол", "наушники", "iphone", "iphone", "кабель", "чехол", "iphone"]
 
-print(f"Всего {len(queries)} поисковых запросов в ленте")
-print("\n".join([f"Запрос {request} ввели {times} раз" for request, times in Counter(queries).items()]))
-print(f"Запрос {sorted(Counter(queries).items(), key=lambda items: items[1], reverse=True)[0][0]} вводили чаще всего")
-most_common = sorted(Counter(queries).items(), key=lambda items: items[1], reverse=True)[0][1]
-print(f"Самый частый запрос занимает {(most_common / len(queries)) * 100:.0f}% от всех запросов")
-print(f"Запросы {", ".join([request for request, times in Counter(queries).items() if times == 1])} встречались 1 раз")
+def main():
+    queries = ['чехол', 'iphone', 'чехол', 'наушники', 'iphone', 'iphone', 'кабель', 'чехол', 'iphone']
+
+    len_queries = len(queries)
+    queries_counter = Counter(queries)
+    print(f'Всего {len_queries} поисковых запросов в ленте')
+    print('\n'.join([f'Запрос {request} ввели {times} раз' for request, times in queries_counter.items()]))
+    most_common = sorted(queries_counter.items(), key=lambda items: items[1], reverse=True)[0]
+    print(f'Запрос {most_common[0]} вводили чаще всего')
+    print(f'Самый частый запрос занимает {(most_common[1] / len_queries) * 100:.0f}% от всех запросов')
+    print(f'Запросы {', '.join([request for request, times in queries_counter.items() if times == 1])} встречались 1 раз')
+
+
+if __name__ == '__main__':
+    main()
